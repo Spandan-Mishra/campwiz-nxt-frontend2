@@ -58,7 +58,7 @@ const SessionProvider = ({ children }: { children: React.ReactNode }) => {
         } finally {
             setSessionLoading(false);
         }
-    }, [handleLogout, hasPermission, session]);
+    }, [handleLogout, hasPermission]);
 
     useEffect(() => {
         fetchSession();
@@ -70,7 +70,7 @@ const SessionProvider = ({ children }: { children: React.ReactNode }) => {
         }, 5 * 60 * 1000); // Refresh every 5 minutes
 
         return () => clearInterval(interval);
-    }, [session, fetchSession]);
+    }, [fetchSession]);
 
     if (sessionLoading) {
         return <SessionLoading />;
