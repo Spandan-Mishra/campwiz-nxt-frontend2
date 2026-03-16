@@ -7,13 +7,13 @@ export function useAPI<T>() {
     const [loading, setLoading] = useState(false);
 
     const request = useCallback(async (
-        func: Promise<ResponseSingle<T> | ResponseError>
+        func: () => Promise<ResponseSingle<T> | ResponseError>
     ): Promise<T | null> => {
         setLoading(true);
         setError(null);
 
         try {
-            const res = await func;
+            const res = await func();
 
             if('detail' in res) {
                 setError(res.detail);
